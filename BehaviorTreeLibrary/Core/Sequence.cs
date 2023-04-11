@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Behavior_Tree.Core
 {
-    public class Selector
+    public class Sequence : Noeud
     {
     }
 }
