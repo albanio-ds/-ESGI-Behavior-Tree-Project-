@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Behavior_Tree</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="AI_BehaviorTree_AIImplementation">
+      <HintPath>..\..\..\5A_ESGI_AI_BehaviorTree_AIImplementation-master\5A_ESGI_AI_BehaviorTree_AIImplementation-master\AI_BehaviorTree_AIImplementation.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2021.3.22f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
