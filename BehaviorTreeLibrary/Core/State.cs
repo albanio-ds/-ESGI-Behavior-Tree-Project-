@@ -1,4 +1,4 @@
-﻿namespace Behavior_Tree.Core
+﻿namespace BehaviorTreeLibrary.Core
 {
     public enum State { NotExecuted, Failure, Running, Success }
 }

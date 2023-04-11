@@ -1,34 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Behavior_Tree.Core
+﻿namespace BehaviorTreeLibrary.Core
 {
-
-    public class Selector : Noeud
+    public class Selector : Node
     {
-        private Queue<Selector> ActionToExecute;
+        public Selector() { }
 
-        public Selector()
+        public override void Execute()
         {
-            ActionToExecute = new Queue<Selector>();
-            CurrentState = State.NotExecuted;
-        }
-
-        public void AddAction(Selector toAdd)
-        {
-            ActionToExecute.Enqueue(toAdd);
-        }
-
-        public void Exectute()
-        {
-            try
+            if (CurrentState != State.Success && Index < Noeuds.Count)
             {
-
+                base.Execute();
+                Execute();
             }
-            catch (Exception e)
+            else
             {
-
+                // nothing
             }
         }
     }

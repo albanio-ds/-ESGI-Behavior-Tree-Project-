@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI_BehaviorTree_AIImplement
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BehaviorTreeLibrary", "..\BehaviorTreeLibrary\BehaviorTreeLibrary.csproj", "{A360A2D7-E5AF-4F38-91B0-2D561EE45039}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorTreeTest", "..\BehaviorTreeTest\BehaviorTreeTest.csproj", "{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,26 @@ Global
 		{A360A2D7-E5AF-4F38-91B0-2D561EE45039}.Release|x64.Build.0 = Release|Any CPU
 		{A360A2D7-E5AF-4F38-91B0-2D561EE45039}.Release|x86.ActiveCfg = Release|Any CPU
 		{A360A2D7-E5AF-4F38-91B0-2D561EE45039}.Release|x86.Build.0 = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|x64.Build.0 = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Debug|x86.Build.0 = Debug|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|ARM.Build.0 = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|ARM64.Build.0 = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|x64.ActiveCfg = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|x64.Build.0 = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|x86.ActiveCfg = Release|Any CPU
+		{CD556E90-60CB-4A38-87A5-1B5634BC1F2D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
