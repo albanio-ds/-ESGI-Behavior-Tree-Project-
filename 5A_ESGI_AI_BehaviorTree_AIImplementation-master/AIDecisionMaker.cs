@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using BehaviorTreeLibrary.Core;
 
 namespace AI_BehaviorTree_AIImplementation
 {
@@ -21,7 +22,7 @@ namespace AI_BehaviorTree_AIImplementation
         public void SetAIId(int parAIId) { AIId = parAIId; }
 
         // Vous pouvez modifier le contenu de cette fonction pour modifier votre nom en jeu
-        public string GetName() { return "AlbanioAITest"; }
+        public string GetName() { return "BehaviorTreeTestv01"; }
 
         public void SetAIGameWorldUtils(GameWorldUtils parGameWorldUtils) { AIGameWorldUtils = parGameWorldUtils; }
 
@@ -29,13 +30,46 @@ namespace AI_BehaviorTree_AIImplementation
 
 
         private float BestDistanceToFire = 10.0f;
+        private List<AIAction> actionList;
+        private PlayerInformations myPlayerInfo;
+        private PlayerInformations target;
+
+        private void StopMovingFunction()
+        {
+            AIActionStopMovement actionStop = new AIActionStopMovement();
+            actionList.Add(actionStop);
+        }
+
+        private void StartMovingFunction()
+        {
+            AIActionMoveToDestination actionMove = new AIActionMoveToDestination();
+            actionMove.Position = target.Transform.Position;
+            actionList.Add(actionMove);
+            AIActionDash aIActionDash = new AIActionDash();
+            aIActionDash.Direction = actionMove.Position - myPlayerInfo.Transform.Position;
+            actionList.Add(aIActionDash);
+        }
+
+        private bool IsPlayerEnoughClose()
+        {
+            return Vector3.Distance(myPlayerInfo.Transform.Position, target.Transform.Position) < BestDistanceToFire;
+        }
+
+        private void FocusAndShootFunction()
+        {
+            AIActionLookAtPosition actionLookAt = new AIActionLookAtPosition();
+            actionLookAt.Position = target.Transform.Position;
+            actionList.Add(actionLookAt);
+            actionList.Add(new AIActionFire());
+        }
+
         public List<AIAction> ComputeAIDecision()
         {
-            List<AIAction> actionList = new List<AIAction>();
+            actionList = new List<AIAction>();
 
             List<PlayerInformations> playerInfos = AIGameWorldUtils.GetPlayerInfosList();
 
-            PlayerInformations target = null;
+            target = null;
             foreach (PlayerInformations playerInfo in playerInfos)
             {
                 if (!playerInfo.IsActive)
@@ -51,30 +85,24 @@ namespace AI_BehaviorTree_AIImplementation
             if (target == null)
                 return actionList;
 
-            PlayerInformations myPlayerInfo = GetPlayerInfos(AIId, playerInfos);
+            myPlayerInfo = GetPlayerInfos(AIId, playerInfos);
             if (myPlayerInfo == null)
                 return actionList;
 
-            if (Vector3.Distance(myPlayerInfo.Transform.Position, target.Transform.Position) < BestDistanceToFire)
-            {
-                AIActionStopMovement actionStop = new AIActionStopMovement();
-                actionList.Add(actionStop);
-            }
-            else
-            {
-                AIActionMoveToDestination actionMove = new AIActionMoveToDestination();
-                actionMove.Position = target.Transform.Position;
-                actionList.Add(actionMove);
-                AIActionDash aIActionDash = new AIActionDash();
-                aIActionDash.Direction = actionMove.Position - myPlayerInfo.Transform.Position;
-                actionList.Add(aIActionDash);
-            }
+            Sequence mainSequence = new Sequence();
+            Selector stopOrStartMoveSelector = new Selector();
+            Sequence stopMoveIfCloseSequence = new Sequence();
+            ActionNode startmoveAction = new ActionNode(StartMovingFunction);
+            ActionNode stopMoveAction = new ActionNode(StopMovingFunction);
+            ActionNode shootAction = new ActionNode(FocusAndShootFunction);
 
-
-            AIActionLookAtPosition actionLookAt = new AIActionLookAtPosition();
-            actionLookAt.Position = target.Transform.Position;
-            actionList.Add(actionLookAt);
-            actionList.Add(new AIActionFire());
+            stopMoveIfCloseSequence.Add(new ConditionNode(new Condition(IsPlayerEnoughClose)));
+            stopMoveIfCloseSequence.Add(stopMoveAction);
+            stopOrStartMoveSelector.Add(stopMoveIfCloseSequence);
+            stopOrStartMoveSelector.Add(startmoveAction);
+            mainSequence.Add(stopOrStartMoveSelector);
+            mainSequence.Add(shootAction);
+            mainSequence.Execute();
 
             return actionList;
         }
