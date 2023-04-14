@@ -7,8 +7,8 @@
     <ProjectGuid>{B8AB6DF7-A5F6-408B-A1CC-85F7CC22B68A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AI_BehaviorTree_AIImplementation_1</RootNamespace>
-    <AssemblyName>AI_BehaviorTree_AIImplementation_1</AssemblyName>
+    <RootNamespace>AI_BehaviorTree_AIImplementation_3</RootNamespace>
+    <AssemblyName>AI_BehaviorTree_AIImplementation_3</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
