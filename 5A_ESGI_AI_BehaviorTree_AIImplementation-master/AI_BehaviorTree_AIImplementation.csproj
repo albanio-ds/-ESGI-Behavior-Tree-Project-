@@ -7,8 +7,8 @@
     <ProjectGuid>{B8AB6DF7-A5F6-408B-A1CC-85F7CC22B68A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AI_BehaviorTree_AIImplementation_0</RootNamespace>
-    <AssemblyName>AI_BehaviorTree_AIImplementation_0</AssemblyName>
+    <RootNamespace>AI_BehaviorTree_AIImplementation_2</RootNamespace>
+    <AssemblyName>AI_BehaviorTree_AIImplementation_2</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
@@ -132,11 +132,10 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AI_BehaviorTree_AIGameUtility">
-      <HintPath>..\..\RedLock\Red Lock_Data\Managed\AI_BehaviorTree_AIGameUtility.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\RedLock-master\Red Lock_Data\Managed\AI_BehaviorTree_AIGameUtility.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2021.3.22f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
-      <Private>False</Private>
+      <HintPath>..\..\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -153,8 +152,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /d  "$(TargetPath)" "C:\Users\alban\OneDrive\Documents\Work\M2\S2\AlgorithmesIA\Projet\RedLock"
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

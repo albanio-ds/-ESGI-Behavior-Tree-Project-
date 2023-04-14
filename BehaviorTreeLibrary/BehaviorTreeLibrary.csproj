@@ -4,4 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="AI_BehaviorTree_AIGameUtility">
+      <HintPath>..\..\..\..\Desktop\RedLock-master\Red Lock_Data\Managed\AI_BehaviorTree_AIGameUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\Desktop\5A_ESGI_AI_BehaviorTree_AIImplementation-master\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
