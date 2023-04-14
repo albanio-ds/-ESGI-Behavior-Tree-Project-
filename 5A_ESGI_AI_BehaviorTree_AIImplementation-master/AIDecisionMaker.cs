@@ -24,7 +24,7 @@ namespace AI_BehaviorTree_AIImplementation
         public void SetAIId(int parAIId) { AIId = parAIId; }
 
         // Vous pouvez modifier le contenu de cette fonction pour modifier votre nom en jeu
-        public string GetName() { return "Soulkiller-v2.5"; }
+        public string GetName() { return "Apagnan 1.0"; }
 
         public void SetAIGameWorldUtils(GameWorldUtils parGameWorldUtils) { AIGameWorldUtils = parGameWorldUtils; }
 
@@ -100,20 +100,9 @@ namespace AI_BehaviorTree_AIImplementation
                     }
                 }
                 target = playerInfo;
-                TargetVisibilityTest();
             }
         }
 
-        private bool TargetVisible = false;
-
-        private void TargetVisibilityTest()
-        {
-            Vector3 targetPos = target.Transform.Position;
-            if (Physics.Raycast(PlayerCurrPos.Value, targetPos - PlayerCurrPos.Value, out RaycastHit info, 100))
-            {
-                TargetVisible = (Vector3.Magnitude(info.point - targetPos) < 1.2f);
-            }
-        }
 
         private List<PlayerInformations> playerInfos;
 
@@ -152,33 +141,33 @@ namespace AI_BehaviorTree_AIImplementation
             nullClosestInNullTargetSeq.Add(new ActionNode(() => MoveTo(MapData.BonusSpawns[0] == null ? Vector3.zero : MapData.BonusSpawns[0])));
             nullClosestInNullTargetSelector.Add(nullClosestInNullTargetSeq);
             //null sequence
+            notNullTargetSeq.Add(new ActionNode(InitMapData));
+            int score = 0;
+            notNullTargetSeq.Add(new ActionNode(() => GetOffensiveScore(out score)));
+            Selector bonusPresenceSelector = new Selector();
+            Selector healthChangedSelector = new Selector();
+            notNullTargetSeq.Add(bonusPresenceSelector);
+            notNullTargetSeq.Add(healthChangedSelector);
+            notNullTargetSeq.Add(new ActionNode(() => FireFunction(target)));
+            notNullTargetSeq.Add(new ActionNode(SaveLastFrameInfo));
 
+            Sequence yesBonus = new Sequence();
+            Sequence noBonus = new Sequence();
+            bonusPresenceSelector.Add(yesBonus);
+            bonusPresenceSelector.Add(noBonus);
 
-            notNullTargetSeq.Add(new ActionNode(() =>
-            {
-                InitMapData();
-                GetOffensiveScore(out int score);
-                if (closest != null && score < 3)
-                {
-                    MoveTo(closest.Value);
-                }
-                else
-                {
-                    // no bonus or bonus enough
-                    UpdateCheckpoint();
-                    MoveTo(circlesCheckpoints[indexCheckpoint]);
-                }
+            yesBonus.Add(new ConditionNode(new Condition(() => closest != null && score < 3)));
+            yesBonus.Add(new ActionNode(() => MoveTo(closest.Value)));
 
-                if (myPlayerInfo.CurrentHealth < (myPlayerInfo.MaxHealth * .4f) || HealthChanged())
-                {
-                    DashFunction(closest != null && myPlayerInfo.CurrentHealth < myPlayerInfo.MaxHealth * 0.8f ? (PlayerCurrPos.Value - closest.Value) : myPlayerInfo.Transform.Position - LastPlayerData.Position);
-                }
+            noBonus.Add(new ActionNode(UpdateCheckpoint));
+            noBonus.Add(new ActionNode(() => MoveTo(circlesCheckpoints[indexCheckpoint])));
 
+            Sequence heathSequence = new Sequence();
+            healthChangedSelector.Add(heathSequence);
+            healthChangedSelector.Add(new ConditionNode(new ConditionAlwaysTrue()));
 
-                FireFunction(target);
-                SaveLastFrameInfo();
-            }));
-
+            heathSequence.Add(new ConditionNode(new Condition(() => (myPlayerInfo.CurrentHealth < (myPlayerInfo.MaxHealth * .6f) && myPlayerInfo.WeaponIsOnCooldown) || HealthChanged())));
+            heathSequence.Add(new ActionNode(() => DashFunction(closest != null && myPlayerInfo.CurrentHealth < myPlayerInfo.MaxHealth * 0.8f ? (PlayerCurrPos.Value - closest.Value) : myPlayerInfo.Transform.Position - LastPlayerData.Position)));
             mainSequence.Execute();
             return actionList;
         }
@@ -249,7 +238,6 @@ namespace AI_BehaviorTree_AIImplementation
         {
             actionList = new List<AIAction>();
             target = null;
-            TargetVisible = false;
         }
 
         private void MoveTo(Vector3 pos)
