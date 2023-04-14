@@ -7,8 +7,8 @@
     <ProjectGuid>{B8AB6DF7-A5F6-408B-A1CC-85F7CC22B68A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AI_BehaviorTree_AIImplementation_0</RootNamespace>
-    <AssemblyName>AI_BehaviorTree_AIImplementation_0</AssemblyName>
+    <RootNamespace>AI_BehaviorTree_AIImplementation_1</RootNamespace>
+    <AssemblyName>AI_BehaviorTree_AIImplementation_1</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
@@ -122,6 +122,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AIDecisionMaker.cs" />
+    <Compile Include="Data\PlayerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\AI_BehaviorTree_AIImplementation.rd.xml" />
   </ItemGroup>
@@ -139,6 +140,12 @@
       <Private>False</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BehaviorTreeLibrary\BehaviorTreeLibrary.csproj">
+      <Project>{a360a2d7-e5af-4f38-91b0-2d561ee45039}</Project>
+      <Name>BehaviorTreeLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
@@ -147,7 +154,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /d  "$(ProjectDir)\AI_BehaviorTree_AIImplementation_0.dll" "C:\Users\alban\OneDrive\Documents\Work\M2\S2\AlgorithmesIA\Projet\RedLock"
+    <PostBuildEvent>xcopy /y /d  "$(TargetPath)" "C:\Users\alban\OneDrive\Documents\Work\M2\S2\AlgorithmesIA\Projet\RedLock"
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
