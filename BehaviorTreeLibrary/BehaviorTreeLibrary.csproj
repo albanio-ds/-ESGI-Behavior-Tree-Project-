@@ -1,7 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <FileUpgradeFlags>40</FileUpgradeFlags>
+    <UpgradeBackupLocation>C:\Users\vanda\Documents\ESGI\Année 5\IAJV2\-ESGI-Behavior-Tree-Project--main\5A_ESGI_AI_BehaviorTree_AIImplementation-master\Backup\BehaviorTreeLibrary\</UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
   </PropertyGroup>
-
 </Project>

@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AI_BehaviorTree_AIImplementation_0</RootNamespace>
-    <AssemblyName>AI_BehaviorTree_AIImplementation_0</AssemblyName>
+    <AssemblyName>AI_BehaviorTree_AIImplementation_2</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
@@ -132,7 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AI_BehaviorTree_AIGameUtility">
-      <HintPath>..\..\RedLock\Red Lock_Data\Managed\AI_BehaviorTree_AIGameUtility.dll</HintPath>
+      <HintPath>..\..\RedLock-master\Red Lock_Data\Managed\AI_BehaviorTree_AIGameUtility.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>..\..\..\..\..\..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2021.3.22f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
@@ -153,7 +153,7 @@
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y /d  "$(TargetPath)" "C:\Users\alban\OneDrive\Documents\Work\M2\S2\AlgorithmesIA\Projet\RedLock"
+    <PostBuildEvent>xcopy /y /d  "$(TargetPath)" "C:\Users\vanda\Documents\ESGI\Année 5\IAJV2"
 </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

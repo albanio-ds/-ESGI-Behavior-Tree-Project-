@@ -22,7 +22,7 @@ namespace AI_BehaviorTree_AIImplementation
         public void SetAIId(int parAIId) { AIId = parAIId; }
 
         // Vous pouvez modifier le contenu de cette fonction pour modifier votre nom en jeu
-        public string GetName() { return "BehaviorTreeTestv01"; }
+        public string GetName() { return "IAbdel"; }
 
         public void SetAIGameWorldUtils(GameWorldUtils parGameWorldUtils) { AIGameWorldUtils = parGameWorldUtils; }
 
@@ -30,9 +30,13 @@ namespace AI_BehaviorTree_AIImplementation
 
 
         private float BestDistanceToFire = 10.0f;
+        private float BestDistanceToBonus = 25.0f;
         private List<AIAction> actionList;
         private PlayerInformations myPlayerInfo;
         private PlayerInformations target;
+
+        private BonusInformations bonusInfo;
+        private BonusInformations targetB;
 
         private void StopMovingFunction()
         {
@@ -48,6 +52,18 @@ namespace AI_BehaviorTree_AIImplementation
             AIActionDash aIActionDash = new AIActionDash();
             aIActionDash.Direction = actionMove.Position - myPlayerInfo.Transform.Position;
             actionList.Add(aIActionDash);
+        }
+
+        private bool IsBonusEnoughClose()
+        {
+            return Vector3.Distance(bonusInfo.Position, targetB.Position) < BestDistanceToBonus;
+        }
+
+        private void GoToBonus()
+        {
+            AIActionMoveToDestination actionMove = new AIActionMoveToDestination();
+            actionMove.Position = targetB.Position;
+            actionList.Add(actionMove);
         }
 
         private bool IsPlayerEnoughClose()
@@ -82,7 +98,19 @@ namespace AI_BehaviorTree_AIImplementation
                 break;
             }
 
+            List<BonusInformations> bonusInfos = AIGameWorldUtils.GetBonusInfosList();
+
+            targetB = null;
+            foreach (BonusInformations bonusInfo in bonusInfos) 
+            {
+                targetB = bonusInfo;
+                break;
+            }
+
             if (target == null)
+                return actionList;
+
+            if (targetB == null)
                 return actionList;
 
             myPlayerInfo = GetPlayerInfos(AIId, playerInfos);
@@ -92,14 +120,16 @@ namespace AI_BehaviorTree_AIImplementation
             Sequence mainSequence = new Sequence();
             Selector stopOrStartMoveSelector = new Selector();
             Sequence stopMoveIfCloseSequence = new Sequence();
-            ActionNode startmoveAction = new ActionNode(StartMovingFunction);
-            ActionNode stopMoveAction = new ActionNode(StopMovingFunction);
+            //ActionNode startmoveAction = new ActionNode(StartMovingFunction);
+            //ActionNode stopMoveAction = new ActionNode(StopMovingFunction);
             ActionNode shootAction = new ActionNode(FocusAndShootFunction);
+            ActionNode getBonus = new ActionNode(GoToBonus);
 
             stopMoveIfCloseSequence.Add(new ConditionNode(new Condition(IsPlayerEnoughClose)));
-            stopMoveIfCloseSequence.Add(stopMoveAction);
+            //stopMoveIfCloseSequence.Add(stopMoveAction);
             stopOrStartMoveSelector.Add(stopMoveIfCloseSequence);
-            stopOrStartMoveSelector.Add(startmoveAction);
+            //stopOrStartMoveSelector.Add(startmoveAction);
+            stopOrStartMoveSelector.Add(getBonus);
             mainSequence.Add(stopOrStartMoveSelector);
             mainSequence.Add(shootAction);
             mainSequence.Execute();

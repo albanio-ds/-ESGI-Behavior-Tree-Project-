@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "PYqmWuVTYLkjtJ/RVkbLmTI/cTG0BH9li30ViDVjBIiUCMwbs/VsdXMRzKuWWTOljREvux+DG3/jGYjhQSiM2Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\vanda\\Documents\\ESGI\\Année 5\\IAJV2\\-ESGI-Behavior-Tree-Project--main\\BehaviorTreeLibrary\\BehaviorTreeLibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vanda\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\vanda\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
